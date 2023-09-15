@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>ToDo List</title>
+</head>
+<body>
+<div class="container">
+    <h1>ToDo List</h1>
+    <div class="menu">
+        <a href="/">All Tasks</a>
+        <a href="/completed">Completed Tasks</a>
+    </div>
+    <h2>Add a New Task</h2>
+    <form action="/add" method="post">
+        <input type="text" name="taskName" placeholder="Task name" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <h2>Tasks</h2>
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li>
+                <% if (task.completed) { %>
+                    <span class="completed-task"><%= task.name %></span>
+                <% } else { %>
+                    <%= task.name %>
+                <% } %>
+                <a href="/edit/<%= task.id %>">Edit</a>
+                <a href="/complete/<%= task.id %>">Complete</a>
+            </li>
+        <% }); %>
+    </ul>
+</div>
+</body>
+</html>
